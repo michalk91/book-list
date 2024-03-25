@@ -14,7 +14,7 @@ function App() {
   const cancelEdit = () => {
     setBookToEdit(null);
   };
-  console.log(bookToEdit);
+
   return (
     <div className="wrapper">
       <h1>Book list App</h1>
