@@ -2,7 +2,17 @@ import { useEffect } from "react";
 import { deleteBook, fetchBooks, deleteAllBooks } from "../Store/BooksSlice";
 import { useAppSelector, useAppDispatch } from "../Store/hooks";
 
-export const ViewBooks = ({ handleEditBook, bookToEdit, cancelEdit }) => {
+interface Props {
+  handleEditBook: any;
+  bookToEdit: any;
+  cancelEdit: any;
+}
+
+export const ViewBooks = ({
+  handleEditBook,
+  bookToEdit,
+  cancelEdit,
+}: Props) => {
   const data = useAppSelector((state) => state.books.booksArray);
 
   const dispatch = useAppDispatch();
@@ -20,8 +30,8 @@ export const ViewBooks = ({ handleEditBook, bookToEdit, cancelEdit }) => {
   };
 
   return (
-    <>
-      <div className="view-books">ViewBooks</div>
+    <div className="view-books">
+      <h1 style={{ paddingTop: "20px" }}>Books:</h1>
       {data.length > 0 ? (
         <>
           {data.map((book) => (
@@ -70,6 +80,6 @@ export const ViewBooks = ({ handleEditBook, bookToEdit, cancelEdit }) => {
       ) : (
         <div>There are no books added yet!</div>
       )}
-    </>
+    </div>
   );
 };

@@ -6,7 +6,7 @@ import { useState } from "react";
 function App() {
   const [bookToEdit, setBookToEdit] = useState(null);
 
-  const handleEditBook = (book) => {
+  const handleEditBook = (book: any) => {
     setBookToEdit(book);
   };
 
@@ -18,7 +18,7 @@ function App() {
     <div className="wrapper">
       <h1>Book list App</h1>
       <div>
-        <AddBooks bookToEdit={bookToEdit} />
+        <AddBooks bookToEdit={bookToEdit} cancelEdit={cancelEdit} />
         <ViewBooks
           handleEditBook={handleEditBook}
           bookToEdit={bookToEdit}
