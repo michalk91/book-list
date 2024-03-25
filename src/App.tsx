@@ -2,18 +2,19 @@ import "./App.css";
 import { AddBooks } from "./Components/AddBooks";
 import { ViewBooks } from "./Components/ViewBooks";
 import { useState } from "react";
+import type { BooksWithID } from "./types";
 
 function App() {
-  const [bookToEdit, setBookToEdit] = useState(null);
+  const [bookToEdit, setBookToEdit] = useState<BooksWithID | null>(null);
 
-  const handleEditBook = (book: any) => {
+  const handleEditBook = (book: BooksWithID) => {
     setBookToEdit(book);
   };
 
   const cancelEdit = () => {
     setBookToEdit(null);
   };
-
+  console.log(bookToEdit);
   return (
     <div className="wrapper">
       <h1>Book list App</h1>

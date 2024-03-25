@@ -1,18 +1,13 @@
 import { useEffect } from "react";
 import { deleteBook, fetchBooks, deleteAllBooks } from "../Store/BooksSlice";
 import { useAppSelector, useAppDispatch } from "../Store/hooks";
-
-interface Props {
-  handleEditBook: any;
-  bookToEdit: any;
-  cancelEdit: any;
-}
+import type { ViewBooksProps } from "../types";
 
 export const ViewBooks = ({
   handleEditBook,
   bookToEdit,
   cancelEdit,
-}: Props) => {
+}: ViewBooksProps) => {
   const data = useAppSelector((state) => state.books.booksArray);
 
   const dispatch = useAppDispatch();
