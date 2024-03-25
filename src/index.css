@@ -7,6 +7,14 @@
   font-family: "Poppins", sans-serif;
 }
 
+span {
+  margin: 0 auto;
+}
+
+h1 {
+  padding-top: 20px;
+}
+
 .wrapper {
   width: 100%;
   max-width: 1200px;
@@ -16,82 +24,6 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
-
-h1 {
-  width: 1000px;
-  text-align: center;
-}
-
-.add-and-view-books {
-  width: 1000px;
-  display: flex;
-  justify-content: center;
-  margin-top: 60px;
-}
-
-.custom-form {
-  flex: 1;
-  margin: 0 20px;
-}
-
-.view-books {
-  flex: 2;
-  margin: 0 20px;
-}
-
-@media (max-width: 1024px) {
-  h1 {
-    width: 95%;
-  }
-  .add-and-view-books {
-    width: 95%;
-    flex-direction: column;
-  }
-  .custom-form {
-    width: 100%;
-    margin: 20px 0;
-  }
-  .view-books {
-    width: 100%;
-    margin: 20px 0;
-  }
-}
-
-input {
-  margin-top: 5px !important;
-}
-
-button {
-  width: 100%;
-}
-
-.view-books {
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.view-books .book {
-  width: 100%;
-  background-color: #fff;
-  margin: 10px;
-  padding: 10px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.actions {
-  display: flex;
-  flex-wrap: nowrap;
-}
-
-.icon {
-  margin: 0 7px;
-  cursor: pointer;
 }
 
 .icon.red {
@@ -104,6 +36,14 @@ button {
   padding: 5px;
 }
 
-.cancel-btn {
-  width: fit-content;
+.icon.red:hover,
+.icon.blue:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.showBook {
+  padding: 20px;
+  margin: 10px;
+  border-top: 2px solid black;
 }

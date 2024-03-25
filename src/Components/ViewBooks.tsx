@@ -26,23 +26,24 @@ export const ViewBooks = ({
 
   return (
     <div className="view-books">
-      <h1 style={{ paddingTop: "20px" }}>Books:</h1>
+      <h1>Books:</h1>
       {data.length > 0 ? (
         <>
           {data.map((book) => (
-            <div className="book" style={{ padding: "20px" }} key={book.id}>
-              <div className="content">
-                <h5>Title: {book.book.title}</h5>
-                <h6>Author: {book.book.author}</h6>
+            <div className="showBook" key={book.id}>
+              <div>
+                <h5>
+                  <b>Title</b>: "{book.book.title}"
+                </h5>
+                <h6>
+                  <b>Author</b>: "{book.book.author}"
+                </h6>
               </div>
 
-              <div className="actions">
+              <div>
                 {bookToEdit === null && (
                   <span
                     onClick={() => handleDeleteBook(book.id)}
-                    style={{
-                      margin: "0 auto",
-                    }}
                     className="icon red"
                   >
                     DELETE
@@ -51,9 +52,6 @@ export const ViewBooks = ({
 
                 <span
                   onClick={() => handleEditBook(book)}
-                  style={{
-                    margin: "0 auto",
-                  }}
                   className="icon blue"
                 >
                   UPDATE
