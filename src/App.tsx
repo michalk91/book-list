@@ -6,7 +6,7 @@ import { useState } from "react";
 function App() {
   const [bookToEdit, setBookToEdit] = useState(null);
 
-  const handleEditBook = (book) => {
+  const handleEditBook = (book: any) => {
     setBookToEdit(book);
   };
 

@@ -77,7 +77,7 @@ export const updateBook = createAsyncThunk(
     for (const snap of books.docs) {
       if (snap.id === editedBook.id) {
         const bookRef = doc(db, "Books", snap.id);
-        await updateDoc(bookRef, editedBook.book);
+        await updateDoc(bookRef, editedBook.book as object);
       }
     }
     return editedBook;

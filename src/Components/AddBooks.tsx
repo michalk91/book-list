@@ -8,7 +8,12 @@ export interface Book {
   title: string;
 }
 
-export const AddBooks = ({ bookToEdit, cancelEdit }) => {
+interface Props {
+  bookToEdit: any;
+  cancelEdit: any;
+}
+
+export const AddBooks = ({ bookToEdit, cancelEdit }: Props) => {
   const dispatch = useAppDispatch();
 
   const [author, setAuthor] = useState("");
