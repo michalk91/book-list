@@ -21,7 +21,7 @@ export const ViewBooks = ({ handleEditBook, bookToEdit, cancelEdit }) => {
 
   return (
     <>
-      <div className="view-books">ViewBooks</div>
+      <h1>Books:</h1>
       {data.length > 0 ? (
         <>
           {data.map((book) => (

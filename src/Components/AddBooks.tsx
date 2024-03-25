@@ -8,7 +8,7 @@ export interface Book {
   title: string;
 }
 
-export const AddBooks = ({ bookToEdit }) => {
+export const AddBooks = ({ bookToEdit, cancelEdit }) => {
   const dispatch = useAppDispatch();
 
   const [author, setAuthor] = useState("");
@@ -41,6 +41,11 @@ export const AddBooks = ({ bookToEdit }) => {
     e.preventDefault();
     const book = { author: editedAuthor, title: editedTitle };
     dispatch(updateBook({ id: bookToEdit.id, book }));
+
+    setEditedAuthor("");
+    setEditedTitle("");
+
+    cancelEdit();
   };
 
   return (
