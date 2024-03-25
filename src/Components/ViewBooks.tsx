@@ -20,8 +20,8 @@ export const ViewBooks = ({ handleEditBook, bookToEdit, cancelEdit }) => {
   };
 
   return (
-    <>
-      <h1>Books:</h1>
+    <div className="view-books">
+      <h1 style={{ paddingTop: "20px" }}>Books:</h1>
       {data.length > 0 ? (
         <>
           {data.map((book) => (
@@ -70,6 +70,6 @@ export const ViewBooks = ({ handleEditBook, bookToEdit, cancelEdit }) => {
       ) : (
         <div>There are no books added yet!</div>
       )}
-    </>
+    </div>
   );
 };

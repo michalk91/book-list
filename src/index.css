@@ -67,7 +67,6 @@ button {
 }
 
 .view-books {
-  background-color: #e4e4e4;
   padding: 10px;
   display: flex;
   flex-direction: column;
@@ -97,10 +96,12 @@ button {
 
 .icon.red {
   color: #ed1d24;
+  padding: 5px;
 }
 
 .icon.blue {
   color: #0088ff;
+  padding: 5px;
 }
 
 .cancel-btn {
