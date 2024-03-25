@@ -2,18 +2,9 @@ import { useEffect, useState } from "react";
 import { SyntheticEvent } from "react";
 import { addBookToFirestore, updateBook } from "../Store/BooksSlice";
 import { useAppDispatch } from "../Store/hooks";
+import type { AddBooksProps } from "../types";
 
-export interface Book {
-  author: string;
-  title: string;
-}
-
-interface Props {
-  bookToEdit: any;
-  cancelEdit: any;
-}
-
-export const AddBooks = ({ bookToEdit, cancelEdit }: Props) => {
+export const AddBooks = ({ bookToEdit, cancelEdit }: AddBooksProps) => {
   const dispatch = useAppDispatch();
 
   const [author, setAuthor] = useState("");
@@ -31,7 +22,7 @@ export const AddBooks = ({ bookToEdit, cancelEdit }: Props) => {
 
   const handleAddBook = (e: SyntheticEvent) => {
     e.preventDefault();
-    const book: Book = {
+    const book = {
       author,
       title,
     };
@@ -44,6 +35,8 @@ export const AddBooks = ({ bookToEdit, cancelEdit }: Props) => {
 
   const handleUpdateBook = (e: SyntheticEvent) => {
     e.preventDefault();
+    if (!bookToEdit) return;
+
     const book = { author: editedAuthor, title: editedTitle };
     dispatch(updateBook({ id: bookToEdit.id, book }));
 

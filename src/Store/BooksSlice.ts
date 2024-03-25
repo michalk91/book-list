@@ -8,12 +8,8 @@ import {
   updateDoc,
 } from "firebase/firestore";
 import db from "../Firebase/config";
-import { Book } from "../Components/AddBooks";
-
-interface BooksWithID {
-  id: string;
-  book: Book;
-}
+import type { Book } from "../types";
+import type { BooksWithID } from "../types";
 
 export const addBookToFirestore = createAsyncThunk(
   "books/addBookToFirestore",
@@ -48,39 +44,51 @@ export const fetchBooks = createAsyncThunk("books/fetchBooks", async () => {
 export const deleteBook = createAsyncThunk(
   "books/deleteBook",
   async (id: string) => {
-    const books = await getDocs(collection(db, "Books"));
+    try {
+      const books = await getDocs(collection(db, "Books"));
 
-    for (const snap of books.docs) {
-      if (snap.id === id) {
-        await deleteDoc(doc(db, "Books", snap.id));
+      for (const snap of books.docs) {
+        if (snap.id === id) {
+          await deleteDoc(doc(db, "Books", snap.id));
+        }
       }
+      return id;
+    } catch (e) {
+      console.error(e);
     }
-    return id;
   }
 );
 
 export const deleteAllBooks = createAsyncThunk(
   "books/deleteAllBooks",
   async () => {
-    const books = await getDocs(collection(db, "Books"));
-    for (const snap of books.docs) {
-      await deleteDoc(doc(db, "Books", snap.id));
+    try {
+      const books = await getDocs(collection(db, "Books"));
+      for (const snap of books.docs) {
+        await deleteDoc(doc(db, "Books", snap.id));
+      }
+      return [];
+    } catch (e) {
+      console.error(e);
     }
-    return [];
   }
 );
 
 export const updateBook = createAsyncThunk(
   "book/updateBook",
   async (editedBook: BooksWithID) => {
-    const books = await getDocs(collection(db, "Books"));
-    for (const snap of books.docs) {
-      if (snap.id === editedBook.id) {
-        const bookRef = doc(db, "Books", snap.id);
-        await updateDoc(bookRef, editedBook.book as object);
+    try {
+      const books = await getDocs(collection(db, "Books"));
+      for (const snap of books.docs) {
+        if (snap.id === editedBook.id) {
+          const bookRef = doc(db, "Books", snap.id);
+          await updateDoc(bookRef, { ...editedBook.book });
+        }
       }
+      return editedBook;
+    } catch (e) {
+      console.error(e);
     }
-    return editedBook;
   }
 );
 
@@ -104,9 +112,11 @@ const booksSlice = createSlice({
         );
       })
       .addCase(deleteAllBooks.fulfilled, (state, action) => {
-        state.booksArray = action.payload;
+        if (action.payload) state.booksArray = action.payload;
       })
       .addCase(updateBook.fulfilled, (state, action) => {
+        if (!action.payload) return;
+
         const { id, book } = action.payload;
         const bookIndex = state.booksArray.findIndex((book) => book.id === id);
         if (bookIndex !== -1) {
