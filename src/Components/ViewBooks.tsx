@@ -36,7 +36,7 @@ export const ViewBooks = ({
                   <b>Title</b>: "{book.book.title}"
                 </h5>
                 <h6>
-                  <b>Author</b>: "{book.book.author}"
+                  <b>Author</b>: {book.book.author}
                 </h6>
               </div>
 
