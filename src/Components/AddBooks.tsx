@@ -89,7 +89,6 @@ export const AddBooks = ({ bookToEdit, cancelEdit }: AddBooksProps) => {
         </form>
       ) : (
         <form className="form-group custom-form" onSubmit={handleUpdateBook}>
-          <br />
           <label>Author</label>
           <input
             className="form-control"
@@ -97,7 +96,7 @@ export const AddBooks = ({ bookToEdit, cancelEdit }: AddBooksProps) => {
             onChange={(e) => setEditedAuthor(e.target.value)}
             value={editedAuthor}
           />
-          <br />
+
           <label>Title</label>
           <input
             className="form-control"
