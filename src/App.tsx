@@ -20,11 +20,7 @@ function App() {
       <h1>Book list App</h1>
       <div>
         <AddBooks bookToEdit={bookToEdit} cancelEdit={cancelEdit} />
-        <ViewBooks
-          handleEditBook={handleEditBook}
-          bookToEdit={bookToEdit}
-          cancelEdit={cancelEdit}
-        />
+        <ViewBooks handleEditBook={handleEditBook} bookToEdit={bookToEdit} />
       </div>
     </div>
   );

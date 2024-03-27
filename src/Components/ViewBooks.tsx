@@ -1,13 +1,9 @@
 import { useEffect } from "react";
-import { deleteBook, fetchBooks, deleteAllBooks } from "../Store/BooksSlice";
+import { deleteBook, fetchBooks } from "../Store/BooksSlice";
 import { useAppSelector, useAppDispatch } from "../Store/hooks";
 import type { ViewBooksProps } from "../types";
 
-export const ViewBooks = ({
-  handleEditBook,
-  bookToEdit,
-  cancelEdit,
-}: ViewBooksProps) => {
+export const ViewBooks = ({ handleEditBook, bookToEdit }: ViewBooksProps) => {
   const data = useAppSelector((state) => state.books.booksArray);
 
   const dispatch = useAppDispatch();
@@ -18,10 +14,6 @@ export const ViewBooks = ({
 
   const handleDeleteBook = (id: string) => {
     dispatch(deleteBook(id));
-  };
-
-  const handleDeleteAllBooks = () => {
-    dispatch(deleteAllBooks());
   };
 
   return (
@@ -59,16 +51,6 @@ export const ViewBooks = ({
               </div>
             </div>
           ))}
-          {data.length > 1 &&
-            (bookToEdit === null ? (
-              <button onClick={handleDeleteAllBooks} className="btn btn-danger">
-                Delete all
-              </button>
-            ) : (
-              <button onClick={cancelEdit} className="btn btn-danger">
-                Cancel Update
-              </button>
-            ))}
         </>
       ) : (
         <div>There are no books added yet!</div>

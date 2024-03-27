@@ -3,9 +3,12 @@ import { SyntheticEvent } from "react";
 import { addBookToFirestore, updateBook } from "../Store/BooksSlice";
 import { useAppDispatch } from "../Store/hooks";
 import type { AddBooksProps } from "../types";
+import { deleteAllBooks } from "../Store/BooksSlice";
+import { useAppSelector } from "../Store/hooks";
 
 export const AddBooks = ({ bookToEdit, cancelEdit }: AddBooksProps) => {
   const dispatch = useAppDispatch();
+  const data = useAppSelector((state) => state.books.booksArray);
 
   const [author, setAuthor] = useState("");
   const [title, setTitle] = useState("");
@@ -46,6 +49,10 @@ export const AddBooks = ({ bookToEdit, cancelEdit }: AddBooksProps) => {
     cancelEdit();
   };
 
+  const handleDeleteAllBooks = () => {
+    dispatch(deleteAllBooks());
+  };
+
   return (
     <>
       {bookToEdit === null ? (
@@ -69,6 +76,16 @@ export const AddBooks = ({ bookToEdit, cancelEdit }: AddBooksProps) => {
           <button type="submit" className="btn btn-success">
             Add
           </button>
+          {data.length > 1 &&
+            (bookToEdit === null ? (
+              <button onClick={handleDeleteAllBooks} className="btn btn-danger">
+                Delete all
+              </button>
+            ) : (
+              <button onClick={cancelEdit} className="btn btn-danger">
+                Cancel Update
+              </button>
+            ))}
         </form>
       ) : (
         <form className="form-group custom-form" onSubmit={handleUpdateBook}>
@@ -91,6 +108,9 @@ export const AddBooks = ({ bookToEdit, cancelEdit }: AddBooksProps) => {
           <br />
           <button type="submit" className="btn btn-success">
             Update
+          </button>
+          <button onClick={cancelEdit} className="btn btn-danger">
+            Cancel Update
           </button>
         </form>
       )}
