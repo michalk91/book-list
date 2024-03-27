@@ -4,12 +4,13 @@ export interface Book {
 }
 
 export interface AddBooksProps {
-  bookToEdit: BooksWithID | null;
   cancelEdit: () => void;
+  bookToEdit: BooksWithID | null;
 }
 
-export interface ViewBooksProps extends AddBooksProps {
+export interface ViewBooksProps {
   handleEditBook: (param: BooksWithID) => void;
+  bookToEdit: BooksWithID | null;
 }
 
 export interface BooksWithID {
