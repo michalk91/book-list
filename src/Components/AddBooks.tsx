@@ -48,7 +48,7 @@ export const AddBooks = memo(
 
         cancelEdit();
       },
-      [dispatch, bookToEdit, cancelEdit, editedAuthor, editedTitle]
+      [dispatch, bookToEdit, cancelEdit, editedAuthor, editedTitle, updateBook]
     );
 
     const handleDeleteAllBooks = useCallback(() => {

@@ -9,13 +9,13 @@ export const ViewBooks = memo(
 
     useEffect(() => {
       dispatch(fetchBooks());
-    }, [dispatch]);
+    }, [dispatch, fetchBooks]);
 
     const handleDeleteBook = useCallback(
       (id: string) => {
         dispatch(deleteBook(id));
       },
-      [dispatch]
+      [dispatch, deleteBook]
     );
 
     return (
