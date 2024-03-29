@@ -4,11 +4,9 @@ import { addBookToFirestore, updateBook } from "../Store/BooksSlice";
 import { useAppDispatch } from "../Store/hooks";
 import type { AddBooksProps } from "../types";
 import { deleteAllBooks } from "../Store/BooksSlice";
-import { useAppSelector } from "../Store/hooks";
 
-export const AddBooks = ({ bookToEdit, cancelEdit }: AddBooksProps) => {
+export const AddBooks = ({ bookToEdit, cancelEdit, data }: AddBooksProps) => {
   const dispatch = useAppDispatch();
-  const data = useAppSelector((state) => state.books.booksArray);
 
   const [author, setAuthor] = useState("");
   const [title, setTitle] = useState("");
