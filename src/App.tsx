@@ -1,7 +1,7 @@
 import "./App.css";
 import { AddBooks } from "./Components/AddBooks";
 import { ViewBooks } from "./Components/ViewBooks";
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import type { BooksWithID } from "./types";
 import { useAppSelector } from "./Store/hooks";
 
@@ -10,13 +10,16 @@ function App() {
 
   const data = useAppSelector((state) => state.books.booksArray);
 
-  const handleEditBook = (book: BooksWithID) => {
-    setBookToEdit(book);
-  };
+  const handleEditBook = useCallback(
+    (book: BooksWithID) => {
+      setBookToEdit(book);
+    },
+    [setBookToEdit]
+  );
 
-  const cancelEdit = () => {
+  const cancelEdit = useCallback(() => {
     setBookToEdit(null);
-  };
+  }, [setBookToEdit]);
 
   return (
     <div className="wrapper">
